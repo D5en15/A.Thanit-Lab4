@@ -8,7 +8,7 @@ const [username, setUername] = useState("");
 const [password, setPassword] = useState ("");
 const [loginStatus, setLoginStatus] = useState("");
 const register = () => {
-   Axios.post("http://10.211.55.6:4000/register", {
+   Axios.post("http://api.backend2.com:4040/register", {
      username: usernameReg,
      password: passwordReg,
    }).then((response) => {
@@ -25,7 +25,7 @@ const register = () => {
    });
 };
 const login = () => {
-  Axios.post("http://10.211.55.6:4000/login", {
+  Axios.post("http://api.backend2.com:4040/login", {
     username: username,
     password: password,
   }).then((response) => {

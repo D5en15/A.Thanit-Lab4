@@ -1,10 +1,7 @@
 const express = require("express");
 const mysql = require("mysql2");
 const cors = require("cors");
-
-
 const app = express();
-
 
 const db = mysql.createConnection({
    host: 'localhost',
@@ -15,7 +12,7 @@ const db = mysql.createConnection({
 app.use(express.json());
 app.use(
    cors({
-       origin: ["http://weblogin.se-rmutl.net"],
+       origin: ["http://login.backend1.com"],
        methods: ["GET", "POST"],
        credentials: true,
    })
@@ -30,11 +27,7 @@ app.get('/', (req, res) => {
 app.post('/login', (req, res) => {
    let username = req.body.username;
    let password = req.body.password;
-
-
    console.log("body: "+ JSON.stringify(req.body));
-
-
    console.log("username: "+username);
    console.log("password: "+password);
 
@@ -51,28 +44,14 @@ app.post('/login', (req, res) => {
            } else
                res.send({ message: "Wrong username/password comination!" });
        }
-
-
    );
 });
 app.post('/register', (req, res) => {
    let username = req.body.username;
    let password = req.body.password;
-
-
-
-
    console.log("body: "+ JSON.stringify(req.body));
-
-
-
-
    console.log("username: "+username);
    console.log("password: "+password);
-
-
-
-
    db.execute(
        "INSERT INTO users (username, password) VALUES (?,?)",
        [username, password],
@@ -82,14 +61,10 @@ app.post('/register', (req, res) => {
            }
            res.send(result);
        }
-
-
-
-
    );
 });
 
 
-app.listen(4000, () => {
+app.listen(4040, () => {
    console.log("running server");
 });
